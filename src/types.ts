@@ -28,8 +28,16 @@ export interface SubscriptionLike {
   unsubscribe: Function
 }
 
+declare global {
+  interface SymbolConstructor {
+    readonly observable: symbol
+  }
+}
+
 export interface ObservableLike<T> {
   subscribe(subscriber: SubscriberLike<T>): SubscriptionLike
+  subscribe(observer: (v: T) => void): SubscriptionLike
+  [Symbol.observable](): ObservableLike<T>
 }
 
 export type Resolve<T> = T extends Promise<infer R> ? R : T extends ObservableLike<infer R> ? R : T
