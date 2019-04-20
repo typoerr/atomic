@@ -1,4 +1,4 @@
-import { HashMap, Omit, Assign } from './types'
+import { HashMap, Omit, Assign, Primitive, DeepReadOnly, DeepUnPartial } from './types'
 
 export function idx<T>(src: Iterable<T>, key?: (el: T, i: number) => string): HashMap<T>
 export function idx<T extends object, K extends keyof T>(src: Iterable<T>, key: K): HashMap<T>
@@ -92,17 +92,15 @@ export function mapKeys<T, K extends keyof T, U extends string>(
   return result
 }
 
-type DeepUnPartial<T> = { [K in keyof T]-?: DeepUnPartial<T[K]> }
-
-type DigResult<T> = T extends string | number | symbol | boolean | null
+type DigResult<T> = T extends Primitive
   ? T | undefined
   : T extends DeepUnPartial<infer R>
   ? R | undefined
-  : T
+  : T | undefined
 
 export function dig<T extends object, R>(
   src: T,
-  draft: (src: DeepUnPartial<T>) => R,
+  draft: (src: DeepReadOnly<DeepUnPartial<T>>) => R,
 ): DigResult<R> {
   let result: any
   const get = (target: any, key: any): any => {
