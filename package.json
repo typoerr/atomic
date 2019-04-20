@@ -38,14 +38,14 @@
     "typescript": "^3.4.4"
   },
   "scripts": {
-    "bundle": "run-p bundle:*",
-    "bundle:esm": "tsc --outDir dist/esm",
-    "bundle:cjs": "tsc --outDir dist/cjs --module commonjs",
+    "compile": "run-p compile:*",
+    "compile:esm": "tsc --outDir dist/esm",
+    "compile:cjs": "tsc --outDir dist/cjs --module commonjs",
     "clean": "run-p clean:**",
     "clean:dist": "rimraf dist",
     "lint": "eslint src/**/*.ts",
     "release:github": "git add . && git commit -am $npm_package_version --allow-empty && git tag $npm_package_version && git push && git push --tags",
-    "release": "run-s test clean bundle release:github",
+    "release": "run-s test clean compile release:github",
     "test": "jest"
   },
   "jest": {
