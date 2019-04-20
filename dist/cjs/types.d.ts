@@ -1,9 +1,16 @@
+export declare type Primitive = null | undefined | string | number | boolean | symbol;
 export declare type Falsy = false | undefined | null | 0 | -0 | '';
 export declare type HashMap<T = any> = {
     [k: string]: T;
 };
 export declare type UnPartial<T> = {
     [P in keyof T]-?: T[P];
+};
+export declare type DeepUnPartial<T> = {
+    [K in keyof T]-?: DeepUnPartial<T[K]>;
+};
+export declare type DeepReadOnly<T> = {
+    readonly [K in keyof T]: DeepReadOnly<T[K]>;
 };
 export declare type Predicate<T> = (value: any) => value is T;
 export declare type Comparison<T> = (a: T, b: T) => boolean;
@@ -19,8 +26,15 @@ export interface SubscriberLike<T> {
 export interface SubscriptionLike {
     unsubscribe: Function;
 }
+declare global {
+    interface SymbolConstructor {
+        readonly observable: symbol;
+    }
+}
 export interface ObservableLike<T> {
     subscribe(subscriber: SubscriberLike<T>): SubscriptionLike;
+    subscribe(observer: (v: T) => void): SubscriptionLike;
+    [Symbol.observable](): ObservableLike<T>;
 }
 export declare type Resolve<T> = T extends Promise<infer R> ? R : T extends ObservableLike<infer R> ? R : T;
 /**
