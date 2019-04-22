@@ -4,7 +4,9 @@ export declare function idx<T extends object, K extends keyof T>(src: Iterable<T
 /**
  * mutable set
  */
-export declare function set<T extends object, K extends keyof T>(src: T, key: K, val: T[K]): T;
+export declare function set<T extends object, K extends keyof T>(src: T, key: K, val: T[K]): Assign<T, {
+    [P in K]: T[K];
+}>;
 export declare function set<T extends object, K extends string, V>(src: T, key: K, val: V): Assign<T, {
     [P in K]: V;
 }>;
