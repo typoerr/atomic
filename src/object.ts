@@ -17,7 +17,11 @@ export function idx(
 /**
  * mutable set
  */
-export function set<T extends object, K extends keyof T>(src: T, key: K, val: T[K]): T
+export function set<T extends object, K extends keyof T>(
+  src: T,
+  key: K,
+  val: T[K],
+): Assign<T, { [P in K]: T[K] }>
 export function set<T extends object, K extends string, V>(
   src: T,
   key: K,
@@ -64,7 +68,7 @@ export function omit<T extends object, K extends keyof T>(src: T, key: K | K[]):
 
 export function pick<T extends object, K extends keyof T>(src: T, key: K | K[]): Pick<T, K> {
   const keys = Array.isArray(key) ? key : [key]
-  return keys.reduce((acc, k) => set(acc, k, src[k]), {} as T)
+  return keys.reduce((acc, k) => set(acc, k, src[k]) as T, {} as T)
 }
 
 export function mapValues<T, K extends keyof T, U>(
