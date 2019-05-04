@@ -1,8 +1,8 @@
 {
-  "name": "atomic",
+  "name": "@typoerr/atomic",
   "description": "",
   "version": "0.0.3",
-  "author": "nullabletypo",
+  "author": "typoerr",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/cjs/index.js",
@@ -13,13 +13,13 @@
     "README.md",
     "LICENCE"
   ],
-  "homepage": "https://github.com/nullabletypo/atomic#readme",
+  "homepage": "https://github.com/typoerr/atomic#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nullabletypo/atomic.git"
+    "url": "git+https://github.com/typoerr/atomic.git"
   },
   "bugs": {
-    "url": "https://github.com/nullabletypo/atomic/issues"
+    "url": "https://github.com/typoerr/atomic/issues"
   },
   "dependencies": {},
   "devDependencies": {
@@ -43,8 +43,8 @@
     "clean": "run-p clean:**",
     "clean:dist": "rimraf dist",
     "lint": "eslint src/**/*.ts",
-    "release:github": "git add . && git commit -am $npm_package_version --allow-empty && git tag $npm_package_version && git push && git push --tags",
-    "release": "run-s test clean compile release:github",
+    "release": "run-s compile release:patch clean",
+    "release:patch": "np patch",
     "test": "jest"
   },
   "jest": {
@@ -55,5 +55,8 @@
         "tsConfig": "test/tsconfig.json"
       }
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
