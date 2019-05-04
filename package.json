@@ -43,8 +43,8 @@
     "clean": "run-p clean:**",
     "clean:dist": "rimraf dist",
     "lint": "eslint src/**/*.ts",
-    "release": "run-s -l -n compile release:patch clean",
-    "release:patch": "np patch --no-yarn",
+    "np": "np",
+    "release": "run-s compile np clean",
     "test": "jest"
   },
   "jest": {
