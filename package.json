@@ -24,18 +24,19 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^24.0.13",
-    "@types/node": "^12.0.8",
-    "@typoerr/eslint-config": "^0.0.9",
-    "eslint": "^5.16.0",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.8",
+    "@typescript-eslint/parser": "^1.13.0",
+    "@typoerr/eslint-config": "^0.0.13",
+    "eslint": "^6.1.0",
     "jest": "^24.8.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
     "ts-jest": "^24.0.2",
-    "ts-node": "^8.2.0",
+    "ts-node": "^8.3.0",
     "tsconfig-paths": "^3.8.0",
-    "typescript": "^3.5.1"
+    "typescript": "^3.5.3"
   },
   "scripts": {
     "compile": "run-p compile:*",
