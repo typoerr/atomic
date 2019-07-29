@@ -10,8 +10,8 @@
   },
   // prettier-vscode
   // https://github.com/prettier/prettier-vscode
-  "prettier.eslintIntegration": true,
-  "prettier.tslintIntegration": true,
+  "prettier.eslintIntegration": false,
+  "prettier.tslintIntegration": false,
   "prettier.stylelintIntegration": true,
   "prettier.requireConfig": true,
   // disable editor format for prettier
