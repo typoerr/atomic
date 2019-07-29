@@ -54,6 +54,7 @@ export function hasOwn<T extends object, K extends keyof T>(obj: T, key: K): boo
 export function hasOwn(obj: object, key: string): boolean
 export function hasOwn(obj: object, key: string): boolean {
   try {
+    // eslint-disable-next-line no-prototype-builtins
     return obj.hasOwnProperty(key)
   } catch (error) {
     return false
