@@ -447,10 +447,10 @@
     lodash.unescape "4.0.1"
     semver "^6.3.0"
 
-"@typoerr/eslint-config@^0.0.17":
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/@typoerr/eslint-config/-/eslint-config-0.0.17.tgz#9fba3e30cb51b5bc9396ac6252a8ba004f17c738"
-  integrity sha512-wHAJ5F1yuzdhZJwhoEzEO6B2+yXSqzLt9zYWXEcEf9ziiomZBzc1Z+o6yY3DfEpXk0z0iTOUwLyTeWAspGMtfA==
+"@typoerr/eslint-config@^0.0.18":
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/@typoerr/eslint-config/-/eslint-config-0.0.18.tgz#469d7a96d818e693ea1206b75960b20d80188616"
+  integrity sha512-4mh5fsfXzORETFojIdDWRPzd8fC0/LMxONM6bkMVxpJJI/XYTDg5sfdx3Gp2CtzXro6I8O8yZ3VTeBavxxiQMQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.3.1"
     "@typescript-eslint/parser" "^2.3.1"
