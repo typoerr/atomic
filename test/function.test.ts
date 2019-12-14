@@ -57,13 +57,20 @@ test('compose.async', async () => {
 })
 
 test('when', () => {
-  const fn = when((s: string) => s === 'hello', s => s)
+  const fn = when(
+    (s: string) => s === 'hello',
+    s => s,
+  )
   expect(fn('hello')).toBe('hello')
   expect(fn('world')).toBe(undefined)
 })
 
 test('when - with onfalse', () => {
-  const fn = when((s: string) => s === 'hello', s => s, _ => 'world')
+  const fn = when(
+    (s: string) => s === 'hello',
+    s => s,
+    _ => 'world',
+  )
   expect(fn('hello')).toBe('hello')
   expect(fn('')).toBe('world')
 })

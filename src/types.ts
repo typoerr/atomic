@@ -18,7 +18,7 @@ export type AnyFunc = (...values: any[]) => any
 
 export type Head<T> = T extends [infer H, ...any[]] ? H : never
 
-export type Tail<T extends any[]> = ((...x: T) => void) extends ((h: any, ...rest: infer R) => void)
+export type Tail<T extends any[]> = ((...x: T) => void) extends (h: any, ...rest: infer R) => void
   ? R
   : never
 
@@ -102,11 +102,11 @@ export type Assign<T extends object, U extends object> = Diff<T, U> & U
  * type A = {a: string, b: number: c: number}
  * type T = MatchKeys<A, string> // "a"
  */
-export type MatchKeys<T, Val> = ({ [K in keyof T]: T[K] extends Val ? K : never })[keyof T]
+export type MatchKeys<T, Val> = { [K in keyof T]: T[K] extends Val ? K : never }[keyof T]
 
 /**
  * @example
  * type A = {a: string, b: number: c: number}
  * type T = UnMatchKeys<A, string> // "b" | "c
  */
-export type UnMatchKeys<T, Val> = ({ [K in keyof T]: T[K] extends Val ? never : K })[keyof T]
+export type UnMatchKeys<T, Val> = { [K in keyof T]: T[K] extends Val ? never : K }[keyof T]

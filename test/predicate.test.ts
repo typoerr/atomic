@@ -1,4 +1,5 @@
 import * as _ from '../src/predicate'
+import { noop } from '../src/misc'
 
 test('conforms', () => {
   const isRecord = _.conforms({
@@ -137,7 +138,7 @@ test('isWeakSet', () => {
 })
 
 test('isFunc', () => {
-  expect(_.isFunc(() => {})).toBe(true)
+  expect(_.isFunc(noop)).toBe(true)
   expect(_.isFunc(class Klass {})).toBe(true)
   expect(_.isFunc(null)).toBe(false)
 })
@@ -159,7 +160,7 @@ describe('isEmpty', () => {
   })
 
   test('function', () => {
-    expect(_.isEmpty(() => {})).toBe(true)
+    expect(_.isEmpty(noop)).toBe(true)
     expect(_.isEmpty(class Klass {})).toBe(true)
   })
 
