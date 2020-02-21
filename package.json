@@ -1,7 +1,7 @@
 {
   "name": "@typoerr/atomic",
   "description": "",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "author": "typoerr",
   "license": "MIT",
   "source": "src/index.ts",
