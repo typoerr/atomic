@@ -27,7 +27,7 @@ export function after<Callback extends AnyFunc>(n: number, cb: Callback) {
 
 export function delayed<Callback extends AnyFunc>(ms: number, cb: Callback) {
   return (...args: Parameters<Callback>) => {
-    return new Promise<ReturnType<Callback>>(resolve => {
+    return new Promise<ReturnType<Callback>>((resolve) => {
       const tid = setTimeout(() => {
         clearTimeout(tid)
         resolve(cb(...args))

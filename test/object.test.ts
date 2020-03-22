@@ -77,16 +77,16 @@ test('mapKeys', () => {
 test('dig', () => {
   type Model = { a: number; b?: { c: number } }
   const m1: Model = { a: 1 }
-  const r1 = dig(m1, x => x.a)
-  const r2 = dig(m1, x => x.b)
-  const r3 = dig(m1, x => x.b.c)
+  const r1 = dig(m1, (x) => x.a)
+  const r2 = dig(m1, (x) => x.b)
+  const r3 = dig(m1, (x) => x.b.c)
   expect(r1).toBe(1)
   expect(r2).toBe(undefined)
   expect(r3).toBe(undefined)
 
   const m2: Model = { a: 1, b: { c: 1 } }
-  const r4 = dig(m2, x => x.b)
-  const r5 = dig(m2, x => x.b.c)
+  const r4 = dig(m2, (x) => x.b)
+  const r5 = dig(m2, (x) => x.b.c)
   expect(r4).toStrictEqual({ c: 1 })
   expect(r5).toStrictEqual(1)
 })
