@@ -1,4 +1,4 @@
-import { identity, constant, existy, range } from '../src/misc'
+import { identity, constant, existy, range, throwErr } from '../src/misc'
 
 test('identity', () => {
   expect(identity(1, 2, 3)).toBe(1)
@@ -36,4 +36,9 @@ test('range: with start-end-step', () => {
   expect(range(0, 0, 0)).toEqual([])
   expect(range(1, 5, 3)).toEqual([1, 4])
   expect(range(1, 3, 0)).toEqual([1, 1])
+})
+
+test('throwErr', () => {
+  expect(() => throwErr('err')).toThrow('err')
+  expect(() => throwErr(new Error('err'))).toThrow('err')
 })

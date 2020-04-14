@@ -44,3 +44,11 @@ export function range(a: number, b?: number, c = 1) {
     return (cur: number) => cur > end
   }
 }
+
+/**
+ * Throw Error
+ */
+export function throwErr<T extends Error>(err: T | string) {
+  const _err = typeof err === 'string' ? new Error(err) : err
+  throw _err
+}
