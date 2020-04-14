@@ -1,3 +1,4 @@
-/public/**
-/dist/**
-/es/**
+**/public/**
+**/dist/**
+**/es/**
+**/node_modules/**
