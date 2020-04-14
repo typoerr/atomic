@@ -8,18 +8,18 @@ export function compact<T>(arr: (T | Falsy)[]): T[] {
 
 export function difference<T>(a: T[], b: T[], getKey?: (el: T) => string) {
   if (getKey === undefined) {
-    return a.filter(el => !b.includes(el))
+    return a.filter((el) => !b.includes(el))
   }
   const bHash = idx(b as any, getKey)
-  return a.filter(el => !has(bHash, getKey(el)))
+  return a.filter((el) => !has(bHash, getKey(el)))
 }
 
 export function intersection<T>(a: T[], b: T[], getKey?: (el: T) => string) {
   if (getKey === undefined) {
-    return a.filter(el => b.includes(el))
+    return a.filter((el) => b.includes(el))
   }
   const bHash = idx(b as any, getKey)
-  return a.filter(el => has(bHash, getKey(el)))
+  return a.filter((el) => has(bHash, getKey(el)))
 }
 
 export function unique<T>(arr: T[], getKey?: (el: T) => string) {
