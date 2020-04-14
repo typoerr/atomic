@@ -15,7 +15,7 @@ test('difference: primitive', () => {
 test('difference: object', () => {
   const a = [{ id: 1 }, { id: 2 }]
   const b = [{ id: 1 }, { id: 3 }]
-  const r1 = difference(a, b, el => String(el.id))
+  const r1 = difference(a, b, (el) => String(el.id))
   const r2 = difference(a, b)
   expect(r1).toEqual([{ id: 2 }])
   expect(r2).toEqual([{ id: 1 }, { id: 2 }])
@@ -30,7 +30,7 @@ test('intersection: primitive', () => {
 test('intersection: object', () => {
   const a = [{ id: 1 }, { id: 2 }]
   const b = [{ id: 1 }, { id: 3 }]
-  const r1 = intersection(a, b, el => String(el.id))
+  const r1 = intersection(a, b, (el) => String(el.id))
   const r2 = intersection(a, b)
   expect(r1).toEqual([{ id: 1 }])
   expect(r2).toEqual([])
@@ -43,7 +43,7 @@ test('unique: primitive', () => {
 
 test('unique: object', () => {
   const src = [{ id: 1 }, { id: 2 }, { id: 1 }, { id: 3 }]
-  const r1 = unique(src, el => String(el.id))
+  const r1 = unique(src, (el) => String(el.id))
   const r2 = unique(src)
   expect(r1).toEqual([{ id: 1 }, { id: 2 }, { id: 3 }])
   expect(r2).toEqual(src)
@@ -57,7 +57,7 @@ test('flat', () => {
 
 test('flat: with map', () => {
   const arr = [1, [1]]
-  const result = flat(arr, x => x + 1)
+  const result = flat(arr, (x) => x + 1)
   expect(result).toStrictEqual([2, 2])
 })
 
@@ -69,6 +69,6 @@ test('flat.deep', () => {
 
 test('flat.deep: with map', () => {
   const arr = [1, [1, [1]]]
-  const result = flat.deep(arr, x => x + 1)
+  const result = flat.deep(arr, (x) => x + 1)
   expect(result).toStrictEqual([2, 2, 2])
 })
