@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
-    "target": "es6",
+    "target": "ES2015",
     "lib": [
-      "es2017"
+      "ES2019"
     ],
+    "rootDir": "./src",
     "declaration": true,
     "outDir": "dist",
     "sourceMap": true,
