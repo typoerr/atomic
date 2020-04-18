@@ -29,5 +29,5 @@ export default {
     },
   ],
   context: 'this',
-  plugins: [typescript({ tsconfig }), resolve()],
+  plugins: [typescript({ tsconfig, rootDir: './src' }), resolve()],
 }
