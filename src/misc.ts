@@ -48,7 +48,7 @@ export function range(a: number, b?: number, c = 1) {
 /**
  * Throw Error
  */
-export function throwErr<T extends Error>(err: T | string) {
+export function throws<T extends Error>(err: T | string) {
   const _err = typeof err === 'string' ? new Error(err) : err
   throw _err
 }
