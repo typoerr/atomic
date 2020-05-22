@@ -2,7 +2,7 @@ export type Primitive = null | undefined | string | number | boolean | symbol
 
 export type Falsy = false | undefined | null | 0 | -0 | ''
 
-export type HashMap<T = any> = { [k: string]: T }
+export type Index<T = any> = { [k: string]: T }
 
 export type UnPartial<T> = { [P in keyof T]-?: T[P] }
 

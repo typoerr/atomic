@@ -1,4 +1,4 @@
-import { Predicate as Pred, HashMap, AnyFunc } from './types'
+import { Predicate as Pred, Index, AnyFunc } from './types'
 
 export function conforms<T>(predmap: { [K in keyof T]: Pred<T[K]> }) {
   return function test(val: any): val is T {
@@ -95,7 +95,7 @@ export function isArray<T>(value: T[] | any): value is T[] {
   return Array.isArray(value)
 }
 
-export function isPlain<T = HashMap>(obj: any | T): obj is T {
+export function isPlain<T = Index>(obj: any | T): obj is T {
   return obj instanceof Object && Object.getPrototypeOf(obj) === Object.prototype
 }
 

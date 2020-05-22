@@ -1,13 +1,10 @@
-import { HashMap, Omit, Assign, Primitive, DeepReadOnly, DeepUnPartial } from './types'
+import { Index, Omit, Assign, Primitive, DeepReadOnly, DeepUnPartial } from './types'
 
-export function idx<T>(src: Iterable<T>, key?: (el: T, i: number) => string): HashMap<T>
-export function idx<T extends object, K extends keyof T>(src: Iterable<T>, key: K): HashMap<T>
-export function idx(
-  src: Iterable<any>,
-  key: string | Function = (_: any, i: number) => i,
-): HashMap {
+export function idx<T>(src: Iterable<T>, key?: (el: T, i: number) => string): Index<T>
+export function idx<T extends object, K extends keyof T>(src: Iterable<T>, key: K): Index<T>
+export function idx(src: Iterable<any>, key: string | Function = (_: any, i: number) => i): Index {
   const map = typeof key === 'function' ? key : (el: any) => el[key]
-  const transform = (acc: HashMap, el: any, i: number) => {
+  const transform = (acc: Index, el: any, i: number) => {
     acc[map(el, i)] = el
     return acc
   }
