@@ -1,4 +1,4 @@
-import { once, before, after, delayed, compose, when } from '../src/function'
+import { once, before, after, delayed, compose } from '../src/function'
 
 test('once', () => {
   const origin = (a: number, b: number) => a + b
@@ -54,23 +54,4 @@ test('compose.async', async () => {
   const promise = fn(1, 2)
   expect(promise).toBeInstanceOf(Promise)
   expect(await promise).toBe('9')
-})
-
-test('when', () => {
-  const fn = when(
-    (s: string) => s === 'hello',
-    (s) => s,
-  )
-  expect(fn('hello')).toBe('hello')
-  expect(fn('world')).toBe(undefined)
-})
-
-test('when - with onfalse', () => {
-  const fn = when(
-    (s: string) => s === 'hello',
-    (s) => s,
-    (_) => 'world',
-  )
-  expect(fn('hello')).toBe('hello')
-  expect(fn('')).toBe('world')
 })

@@ -1,5 +1,4 @@
 import { AnyFunc, Resolve } from './types'
-import { constant } from './misc'
 
 export function once<Callback extends AnyFunc>(callback: Callback) {
   let invoked = false
@@ -108,18 +107,4 @@ export function composeAsync<A extends any[], B, C, D, E, F, R>(
 ): (...args: A) => Promise<Resolve<R>>
 export function composeAsync(...funcs: AnyFunc[]) {
   return funcs.reduceRight((a, b) => async (...args: any[]) => a(await b(...args)))
-}
-
-export function when<T extends any[], R1, R2 = undefined>(
-  predicate: (...args: T) => boolean,
-  onTrue: (...args: T) => R1,
-  onFalse: (...args: T) => R2 = constant(undefined) as any,
-): (...args: T) => R1 | R2 {
-  return (...args: T) => {
-    if (predicate.apply(undefined, args)) {
-      return onTrue.apply(undefined, args)
-    } else {
-      return onFalse.apply(undefined, args)
-    }
-  }
 }
