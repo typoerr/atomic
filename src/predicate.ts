@@ -1,4 +1,4 @@
-import { Predicate, Index, AnyFunction } from './types'
+import { Predicate, AnyFunction } from './types'
 
 type PredicateMap<T> = {
   [K in keyof T]: Predicate<T[K]>
@@ -98,11 +98,11 @@ export function isArray<T>(value: T[] | any): value is T[] {
   return Array.isArray(value)
 }
 
-export function isPlainObject<T = Index>(obj: any | T): obj is T {
+export function isPlainObject<T = Record<string, any>>(obj: any | T): obj is T {
   return obj instanceof Object && Object.getPrototypeOf(obj) === Object.prototype
 }
 
-export function isObject<T extends Index>(obj: any | T): obj is T {
+export function isObject<T extends Record<string, any>>(obj: any | T): obj is T {
   return obj === Object(obj)
 }
 
@@ -122,11 +122,11 @@ export function isSet<T>(value: any | Set<T>): value is Set<T> {
   return value instanceof Set
 }
 
-export function isWeakMap<K extends Index, V>(value: any | WeakMap<K, V>): value is WeakMap<K, V> {
+export function isWeakMap<K extends Record<string, any>, V>(value: any | WeakMap<K, V>): value is WeakMap<K, V> {
   return value instanceof WeakMap
 }
 
-export function isWeakSet<T extends Index>(value: any | WeakSet<T>): value is WeakSet<T> {
+export function isWeakSet<T extends Record<string, any>>(value: any | WeakSet<T>): value is WeakSet<T> {
   return value instanceof WeakSet
 }
 
