@@ -1,6 +1,6 @@
-import { Predicate as Pred, Index, AnyFunction } from './types'
+import { Predicate, Index, AnyFunction } from './types'
 
-export function conforms<T>(predmap: { [K in keyof T]: Pred<T[K]> }) {
+export function conforms<T>(predmap: { [K in keyof T]: Predicate<T[K]> }) {
   return function test(val: any): val is T {
     try {
       for (const k in predmap) {
@@ -16,11 +16,16 @@ export function conforms<T>(predmap: { [K in keyof T]: Pred<T[K]> }) {
   }
 }
 
-export function and<T1, T2>(a: Pred<T1>, b: Pred<T2>): Pred<T1 & T2>
-export function and<T1, T2, T3>(a: Pred<T1>, b: Pred<T2>, c: Pred<T3>): Pred<T1 & T2 & T3>
-export function and<T1, T2, T3, T4>(a: Pred<T1>, b: Pred<T2>, c: Pred<T3>, d: Pred<T3>): Pred<T1 & T2 & T3 & T4>
-export function and<T>(...predicates: Pred<any>[]): Pred<T>
-export function and(...predicates: Pred<any>[]) {
+export function and<T1, T2>(a: Predicate<T1>, b: Predicate<T2>): Predicate<T1 & T2>
+export function and<T1, T2, T3>(a: Predicate<T1>, b: Predicate<T2>, c: Predicate<T3>): Predicate<T1 & T2 & T3>
+export function and<T1, T2, T3, T4>(
+  a: Predicate<T1>,
+  b: Predicate<T2>,
+  c: Predicate<T3>,
+  d: Predicate<T3>,
+): Predicate<T1 & T2 & T3 & T4>
+export function and<T>(...predicates: Predicate<any>[]): Predicate<T>
+export function and(...predicates: Predicate<any>[]) {
   return function test(val: any) {
     try {
       for (let i = 0; i < predicates.length; i++) {
@@ -33,11 +38,16 @@ export function and(...predicates: Pred<any>[]) {
   }
 }
 
-export function or<T1, T2>(a: Pred<T1>, b: Pred<T2>): Pred<T1 | T2>
-export function or<T1, T2, T3>(a: Pred<T1>, b: Pred<T2>, c: Pred<T3>): Pred<T1 | T2 | T3>
-export function or<T1, T2, T3, T4>(a: Pred<T1>, b: Pred<T2>, c: Pred<T3>, d: Pred<T4>): Pred<T1 | T2 | T3 | T4>
-export function or<T>(...predicates: Pred<any>[]): Pred<T>
-export function or(...predicates: Pred<any>[]) {
+export function or<T1, T2>(a: Predicate<T1>, b: Predicate<T2>): Predicate<T1 | T2>
+export function or<T1, T2, T3>(a: Predicate<T1>, b: Predicate<T2>, c: Predicate<T3>): Predicate<T1 | T2 | T3>
+export function or<T1, T2, T3, T4>(
+  a: Predicate<T1>,
+  b: Predicate<T2>,
+  c: Predicate<T3>,
+  d: Predicate<T4>,
+): Predicate<T1 | T2 | T3 | T4>
+export function or<T>(...predicates: Predicate<any>[]): Predicate<T>
+export function or(...predicates: Predicate<any>[]) {
   return function test(val: any) {
     try {
       for (let i = 0; i < predicates.length; i++) {
@@ -62,7 +72,7 @@ export function isNumber(value: any): value is number {
   return typeof value === 'number'
 }
 
-export function isUndef(value: any): value is undefined {
+export function isUndefined(value: any): value is undefined {
   return value === undefined
 }
 
@@ -74,7 +84,7 @@ export function isVoid(value: any): value is void {
   return value === undefined || value === null
 }
 
-export function isBool(value: any): value is boolean {
+export function isBoolean(value: any): value is boolean {
   return typeof value === 'boolean'
 }
 
@@ -85,7 +95,7 @@ export function isArray<T>(value: T[] | any): value is T[] {
   return Array.isArray(value)
 }
 
-export function isPlain<T = Index>(obj: any | T): obj is T {
+export function isPlainObject<T = Index>(obj: any | T): obj is T {
   return obj instanceof Object && Object.getPrototypeOf(obj) === Object.prototype
 }
 
@@ -97,7 +107,7 @@ export function isDate(value: any): value is Date {
   return value instanceof Date
 }
 
-export function isErr(value: any): value is Error {
+export function isError(value: any): value is Error {
   return value instanceof Error
 }
 
@@ -117,7 +127,7 @@ export function isWeakSet<T extends Index>(value: any | WeakSet<T>): value is We
   return value instanceof WeakSet
 }
 
-export function isFunc<T extends AnyFunction>(value: T | any): value is T {
+export function isFunction<T extends AnyFunction>(value: T | any): value is T {
   return typeof value === 'function'
 }
 

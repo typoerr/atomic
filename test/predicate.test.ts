@@ -53,9 +53,9 @@ test('isNumber', () => {
   expect(_.isNumber('1')).toBe(false)
 })
 
-test('isUndef', () => {
-  expect(_.isUndef(undefined)).toBe(true)
-  expect(_.isUndef(null)).toBe(false)
+test('isUndefined', () => {
+  expect(_.isUndefined(undefined)).toBe(true)
+  expect(_.isUndefined(null)).toBe(false)
 })
 
 test('isNull', () => {
@@ -69,13 +69,13 @@ test('isVoid', () => {
   expect(_.isVoid({})).toBe(false)
 })
 
-test('isBool', () => {
+test('isBoolean', () => {
   // tslint:disable:no-construct
-  expect(_.isBool(true)).toBe(true)
-  expect(_.isBool(false)).toBe(true)
-  expect(_.isBool(Boolean())).toBe(true)
-  expect(_.isBool(new Boolean())).toBe(false)
-  expect(_.isBool(1)).toBe(false)
+  expect(_.isBoolean(true)).toBe(true)
+  expect(_.isBoolean(false)).toBe(true)
+  expect(_.isBoolean(Boolean())).toBe(true)
+  expect(_.isBoolean(new Boolean())).toBe(false)
+  expect(_.isBoolean(1)).toBe(false)
 })
 
 test('isSymbol', () => {
@@ -98,11 +98,11 @@ test('isObject', () => {
   expect(_.isObject(undefined)).toBe(false)
 })
 
-test('isPlain', () => {
+test('isPlainObject', () => {
   class Klass {}
-  expect(_.isPlain({})).toBe(true)
-  expect(_.isPlain(new Klass())).toBe(false)
-  expect(_.isPlain('')).toBe(false)
+  expect(_.isPlainObject({})).toBe(true)
+  expect(_.isPlainObject(new Klass())).toBe(false)
+  expect(_.isPlainObject('')).toBe(false)
 })
 
 test('isDate', () => {
@@ -111,10 +111,10 @@ test('isDate', () => {
   expect(_.isDate(date.toString())).toBe(false)
 })
 
-test('isErr', () => {
-  expect(_.isErr(new Error())).toBe(true)
-  expect(_.isErr(new TypeError())).toBe(true)
-  expect(_.isErr({})).toBe(false)
+test('isError', () => {
+  expect(_.isError(new Error())).toBe(true)
+  expect(_.isError(new TypeError())).toBe(true)
+  expect(_.isError({})).toBe(false)
 })
 
 test('isMap', () => {
@@ -137,10 +137,10 @@ test('isWeakSet', () => {
   expect(_.isWeakSet(new Set())).toBe(false)
 })
 
-test('isFunc', () => {
-  expect(_.isFunc(noop)).toBe(true)
-  expect(_.isFunc(class Klass {})).toBe(true)
-  expect(_.isFunc(null)).toBe(false)
+test('isFunction', () => {
+  expect(_.isFunction(noop)).toBe(true)
+  expect(_.isFunction(class Klass {})).toBe(true)
+  expect(_.isFunction(null)).toBe(false)
 })
 
 describe('isEmpty', () => {
