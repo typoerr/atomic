@@ -1,11 +1,14 @@
 import { Predicate, Index, AnyFunction } from './types'
 
-export function conforms<T>(predmap: { [K in keyof T]: Predicate<T[K]> }) {
-  return function test(val: any): val is T {
+type PredicateMap<T> = {
+  [K in keyof T]: Predicate<T[K]>
+}
+
+export function conforms<T>(map: PredicateMap<T>) {
+  return function test(src: any): src is T {
     try {
-      for (const k in predmap) {
-        const v = val[k]
-        if (!(k in val) || !predmap[k](v)) {
+      for (const k in map) {
+        if (!map[k](src[k])) {
           return false
         }
       }

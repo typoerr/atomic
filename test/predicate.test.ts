@@ -2,20 +2,29 @@ import * as _ from '../src/predicate'
 import { noop } from '../src/misc'
 
 test('conforms', () => {
-  const isRecord = _.conforms({
-    a: _.isNumber,
+  interface Model {
+    a?: number
+    b: string
+    c: { d: number | string }
+  }
+
+  const isModel = _.conforms<Model>({
+    a: _.or(_.isNumber, _.isUndefined),
     b: _.isString,
-    c: _.conforms<{ d: number | string }>({
+    c: _.conforms({
       d: _.or(_.isNumber, _.isString),
     }),
   })
 
-  expect(isRecord({})).toBe(false)
-  expect(isRecord(null)).toBe(false)
-  expect(isRecord(undefined)).toBe(false)
-  expect(isRecord({ a: 1, b: '' })).toBe(false)
-  expect(isRecord({ a: 1, b: '', c: { d: 1 } })).toBe(true)
-  expect(isRecord({ a: 1, b: '', c: { d: '' } })).toBe(true)
+  expect(isModel({})).toBe(false)
+  expect(isModel(null)).toBe(false)
+  expect(isModel(undefined)).toBe(false)
+  expect(isModel({ a: 1, b: '' })).toBe(false)
+  expect(isModel({ a: 1, b: '', c: { d: 1 } })).toBe(true)
+  expect(isModel({ a: 1, b: '', c: { d: '' } })).toBe(true)
+  expect(isModel({ b: '', c: { d: '' } })).toBe(true)
+  expect(isModel({ a: true, b: '', c: { d: '' } })).toBe(false)
+  expect(isModel({ b: '', c: { d: '' }, f: 1 })).toBe(true)
 })
 
 test('and', () => {
