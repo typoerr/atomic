@@ -14,13 +14,11 @@ export type Predicate<T> = (value: any) => value is T
 
 export type Comparison<T> = (a: T, b: T) => boolean
 
-export type AnyFunc = (...values: any[]) => any
+export type AnyFunction = (...values: any[]) => any
 
 export type Head<T> = T extends [infer H, ...any[]] ? H : never
 
-export type Tail<T extends any[]> = ((...x: T) => void) extends (h: any, ...rest: infer R) => void
-  ? R
-  : never
+export type Tail<T extends any[]> = ((...x: T) => void) extends (h: any, ...rest: infer R) => void ? R : never
 
 export type Union<T> = T extends [...(infer U)[]] ? U : never
 
@@ -31,7 +29,7 @@ export interface SubscriberLike<T> {
 }
 
 export interface SubscriptionLike {
-  unsubscribe: Function
+  unsubscribe: AnyFunction
 }
 
 declare global {
@@ -52,12 +50,13 @@ export type Resolve<T> = T extends Promise<infer R> ? R : T extends ObservableLi
  * Get Type that omit keys from T
  * K should be not keyof T but string.
  *
+ * @deprecated use native(lib.es5.d.ts)
  * @example
  * type A = {a: string, b: number}
  * type Expect = Omit<A, 'a'> // { b: number }
  *
  */
-export type Omit<T extends object, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type Omit<T, K extends any> = Pick<T, Exclude<keyof T, K>>
 
 /**
  * Pick props that un exist U
@@ -68,13 +67,13 @@ export type Omit<T extends object, K extends keyof T> = Pick<T, Exclude<keyof T,
  * type B = {a?: string, b: number, x: number}
  * type C = Diff<B, A> // { x: number }
  */
-export type Diff<T extends object, U extends object> = Pick<T, Exclude<keyof T, keyof U>>
+export type Diff<T, U> = Pick<T, Exclude<keyof T, keyof U>>
 
 /**
  * Pick props that exist in U
  */
 
-export type Insersection<T extends object, U extends object> = Pick<T, Extract<keyof T, keyof U>>
+export type Insersection<T, U> = Pick<T, Extract<keyof T, keyof U>>
 
 /**
  * $Diff of Flowtype
@@ -84,7 +83,7 @@ export type Insersection<T extends object, U extends object> = Pick<T, Extract<k
  * type T2 = WeakDiff<{a: string, b: number}, {a: string, c: number}>
  * // Expect { b: number } & { a?: string}
  */
-export type WeakDiff<T extends object, U extends object> = Diff<T, U> & Partial<Insersection<T, U>>
+export type WeakDiff<T, U> = Diff<T, U> & Partial<Insersection<T, U>>
 
 /**
  * Overwrite T by U
@@ -92,21 +91,21 @@ export type WeakDiff<T extends object, U extends object> = Diff<T, U> & Partial<
  * @example
  * type A = {a: string, b: number}
  * type B = {a?: string, b: number, x: number}
- * type C = Overwrite<A, B> // {b: number} & B
+ * type C = Assign<A, B> // {b: number} & B
  *
  */
-export type Assign<T extends object, U extends object> = Diff<T, U> & U
+export type Assign<T, U> = Diff<T, U> & U
 
 /**
  * @example
  * type A = {a: string, b: number: c: number}
  * type T = MatchKeys<A, string> // "a"
  */
-export type MatchKeys<T, Val> = { [K in keyof T]: T[K] extends Val ? K : never }[keyof T]
+export type MatchKeys<T, U> = { [K in keyof T]: T[K] extends U ? K : never }[keyof T]
 
 /**
  * @example
  * type A = {a: string, b: number: c: number}
  * type T = UnMatchKeys<A, string> // "b" | "c
  */
-export type UnMatchKeys<T, Val> = { [K in keyof T]: T[K] extends Val ? never : K }[keyof T]
+export type UnMatchKeys<T, U> = { [K in keyof T]: T[K] extends U ? never : K }[keyof T]

@@ -1,8 +1,8 @@
-import { Index, Omit, Assign, Primitive, DeepReadOnly, DeepUnPartial } from './types'
+import { Index, Assign, Primitive, DeepReadOnly, DeepUnPartial, AnyFunction } from './types'
 
-export function idx<T>(src: Iterable<T>, key?: (el: T, i: number) => string): Index<T>
-export function idx<T extends object, K extends keyof T>(src: Iterable<T>, key: K): Index<T>
-export function idx(src: Iterable<any>, key: string | Function = (_: any, i: number) => i): Index {
+export function idx<T>(src: Iterable<T>, key?: (el: T, i: number) => string): Record<string, T>
+export function idx<T extends Index, K extends keyof T>(src: Iterable<T>, key: K): Record<string, T>
+export function idx(src: Iterable<any>, key: string | AnyFunction = (_: any, i: number) => i): Index {
   const map = typeof key === 'function' ? key : (el: any) => el[key]
   const transform = (acc: Index, el: any, i: number) => {
     acc[map(el, i)] = el
@@ -14,16 +14,8 @@ export function idx(src: Iterable<any>, key: string | Function = (_: any, i: num
 /**
  * mutable set
  */
-export function set<T extends object, K extends keyof T>(
-  src: T,
-  key: K,
-  val: T[K],
-): Assign<T, { [P in K]: T[K] }>
-export function set<T extends object, K extends string, V>(
-  src: T,
-  key: K,
-  val: V,
-): Assign<T, { [P in K]: V }>
+export function set<T extends Index, K extends keyof T>(src: T, key: K, val: T[K]): Assign<T, Record<K, T[K]>>
+export function set<T extends Index, K extends string, V>(src: T, key: K, val: V): Assign<T, Record<K, V>>
 export function set(src: any, key: string, val: any) {
   src[key] = val
   return src
@@ -32,14 +24,14 @@ export function set(src: any, key: string, val: any) {
 /**
  * mutable delete
  */
-export function del<T extends object, K extends keyof T>(src: T, key: K): Omit<T, K> {
+export function del<T extends Index, K extends keyof T>(src: T, key: K): Omit<T, K> {
   delete src[key]
   return src
 }
 
-export function has<T extends object, K extends keyof T>(obj: T, key: K): boolean
-export function has(obj: object, key: string): boolean
-export function has(obj: object, key: string): boolean {
+export function has<T extends Index, K extends keyof T>(obj: T, key: K): boolean
+export function has(obj: Index, key: string): boolean
+export function has(obj: Index, key: string): boolean {
   try {
     return key in obj
   } catch (error) {
@@ -47,9 +39,9 @@ export function has(obj: object, key: string): boolean {
   }
 }
 
-export function hasOwn<T extends object, K extends keyof T>(obj: T, key: K): boolean
-export function hasOwn(obj: object, key: string): boolean
-export function hasOwn(obj: object, key: string): boolean {
+export function hasOwn<T extends Index, K extends keyof T>(obj: T, key: K): boolean
+export function hasOwn(obj: Index, key: string): boolean
+export function hasOwn(obj: Index, key: string): boolean {
   try {
     // eslint-disable-next-line no-prototype-builtins
     return obj.hasOwnProperty(key)
@@ -58,13 +50,13 @@ export function hasOwn(obj: object, key: string): boolean {
   }
 }
 
-export function omit<T extends object, K extends keyof T>(src: T, key: K | K[]): Omit<T, K> {
+export function omit<T extends Index, K extends keyof T>(src: T, key: K | K[]): Omit<T, K> {
   src = { ...src }
   const keys = Array.isArray(key) ? key : [key]
   return keys.reduce((acc, key) => del(acc, key) as T, { ...src })
 }
 
-export function pick<T extends object, K extends keyof T>(src: T, key: K | K[]): Pick<T, K> {
+export function pick<T extends Index, K extends keyof T>(src: T, key: K | K[]): Pick<T, K> {
   const keys = Array.isArray(key) ? key : [key]
   return keys.reduce((acc, k) => set(acc, k, src[k]) as T, {} as T)
 }
@@ -100,10 +92,7 @@ type DigResult<T> = T extends Primitive
   ? R | undefined
   : T | undefined
 
-export function dig<T extends object, R>(
-  src: T,
-  draft: (src: DeepReadOnly<DeepUnPartial<T>>) => R,
-): DigResult<R> {
+export function dig<T extends Index, R>(src: T, draft: (src: DeepReadOnly<DeepUnPartial<T>>) => R): DigResult<R> {
   let result: any
   const get = (target: any, key: any): any => {
     result = target[key]

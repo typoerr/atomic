@@ -690,10 +690,10 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@typoerr/eslint-config@0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@typoerr/eslint-config/-/eslint-config-0.0.30.tgz#2f59d26bafe70d27a370663802612450f944aa32"
-  integrity sha512-EK7M4P5WNfAyndJ5q4KjiIq/KJxVKb/bFCmpV3YlFUto4vUpAgsL8lBrxSKtMN78b8JoteYtf8YIAz/EG8pymA==
+"@typoerr/eslint-config@0.0.31":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@typoerr/eslint-config/-/eslint-config-0.0.31.tgz#9c9695381eb697a3a3bf9e2416b03435f32a81f0"
+  integrity sha512-b3eRwI6beke4D4m5K7gTIMYKo3SqoAAYpVvukjC7su7eN4AdzfDf1Kl94y9Jth3lZoxvPxz9DZsZ1FUeqntEBg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^3.0.0"
     "@typescript-eslint/parser" "^3.0.0"

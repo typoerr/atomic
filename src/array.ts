@@ -45,10 +45,7 @@ export function flat<T, U = T>(arr: T[], map: (el: Expose<T>) => U = identity as
 
 flat.deep = flatDeep
 
-export function flatDeep<T, U = UnArray<T>>(
-  arr: T[],
-  map: (el: UnArray<T>) => U = identity as any,
-): DeepFlat<U> {
+export function flatDeep<T, U = UnArray<T>>(arr: T[], map: (el: UnArray<T>) => U = identity as any): DeepFlat<U> {
   const callback = (acc: any[], el: any): any[] => {
     if (Array.isArray(el)) return el.reduce(callback, acc)
     else acc.push(map(el))

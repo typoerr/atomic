@@ -1,4 +1,4 @@
-import { Predicate as Pred, Index, AnyFunc } from './types'
+import { Predicate as Pred, Index, AnyFunction } from './types'
 
 export function conforms<T>(predmap: { [K in keyof T]: Pred<T[K]> }) {
   return function test(val: any): val is T {
@@ -18,12 +18,7 @@ export function conforms<T>(predmap: { [K in keyof T]: Pred<T[K]> }) {
 
 export function and<T1, T2>(a: Pred<T1>, b: Pred<T2>): Pred<T1 & T2>
 export function and<T1, T2, T3>(a: Pred<T1>, b: Pred<T2>, c: Pred<T3>): Pred<T1 & T2 & T3>
-export function and<T1, T2, T3, T4>(
-  a: Pred<T1>,
-  b: Pred<T2>,
-  c: Pred<T3>,
-  d: Pred<T3>,
-): Pred<T1 & T2 & T3 & T4>
+export function and<T1, T2, T3, T4>(a: Pred<T1>, b: Pred<T2>, c: Pred<T3>, d: Pred<T3>): Pred<T1 & T2 & T3 & T4>
 export function and<T>(...predicates: Pred<any>[]): Pred<T>
 export function and(...predicates: Pred<any>[]) {
   return function test(val: any) {
@@ -40,12 +35,7 @@ export function and(...predicates: Pred<any>[]) {
 
 export function or<T1, T2>(a: Pred<T1>, b: Pred<T2>): Pred<T1 | T2>
 export function or<T1, T2, T3>(a: Pred<T1>, b: Pred<T2>, c: Pred<T3>): Pred<T1 | T2 | T3>
-export function or<T1, T2, T3, T4>(
-  a: Pred<T1>,
-  b: Pred<T2>,
-  c: Pred<T3>,
-  d: Pred<T4>,
-): Pred<T1 | T2 | T3 | T4>
+export function or<T1, T2, T3, T4>(a: Pred<T1>, b: Pred<T2>, c: Pred<T3>, d: Pred<T4>): Pred<T1 | T2 | T3 | T4>
 export function or<T>(...predicates: Pred<any>[]): Pred<T>
 export function or(...predicates: Pred<any>[]) {
   return function test(val: any) {
@@ -60,7 +50,7 @@ export function or(...predicates: Pred<any>[]) {
   }
 }
 
-export function not<F extends AnyFunc>(f: F) {
+export function not<F extends AnyFunction>(f: F) {
   return (...val: Parameters<F>): boolean => !Boolean(f(...val)) // eslint-disable-line
 }
 
@@ -99,7 +89,7 @@ export function isPlain<T = Index>(obj: any | T): obj is T {
   return obj instanceof Object && Object.getPrototypeOf(obj) === Object.prototype
 }
 
-export function isObject<T extends object>(obj: any | T): obj is T {
+export function isObject<T extends Index>(obj: any | T): obj is T {
   return obj === Object(obj)
 }
 
@@ -119,15 +109,15 @@ export function isSet<T>(value: any | Set<T>): value is Set<T> {
   return value instanceof Set
 }
 
-export function isWeakMap<K extends object, V>(value: any | WeakMap<K, V>): value is WeakMap<K, V> {
+export function isWeakMap<K extends Index, V>(value: any | WeakMap<K, V>): value is WeakMap<K, V> {
   return value instanceof WeakMap
 }
 
-export function isWeakSet<T extends object>(value: any | WeakSet<T>): value is WeakSet<T> {
+export function isWeakSet<T extends Index>(value: any | WeakSet<T>): value is WeakSet<T> {
   return value instanceof WeakSet
 }
 
-export function isFunc<T extends AnyFunc>(value: T | any): value is T {
+export function isFunc<T extends AnyFunction>(value: T | any): value is T {
   return typeof value === 'function'
 }
 

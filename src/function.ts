@@ -1,6 +1,6 @@
-import { AnyFunc, Resolve } from './types'
+import { AnyFunction, Resolve } from './types'
 
-export function once<Callback extends AnyFunc>(callback: Callback) {
+export function once<Callback extends AnyFunction>(callback: Callback) {
   let invoked = false
   let ret: ReturnType<Callback>
   return (...args: Parameters<Callback>): ReturnType<Callback> => {
@@ -12,19 +12,19 @@ export function once<Callback extends AnyFunc>(callback: Callback) {
   }
 }
 
-export function before<Callback extends AnyFunc>(n: number, cb: Callback) {
+export function before<Callback extends AnyFunction>(n: number, cb: Callback) {
   return (...args: Parameters<Callback>): ReturnType<Callback> | undefined => {
     return --n >= 0 ? cb(...args) : undefined
   }
 }
 
-export function after<Callback extends AnyFunc>(n: number, cb: Callback) {
+export function after<Callback extends AnyFunction>(n: number, cb: Callback) {
   return (...args: Parameters<Callback>): ReturnType<Callback> | undefined => {
     return --n > 0 ? undefined : cb(...args)
   }
 }
 
-export function delayed<Callback extends AnyFunc>(ms: number, cb: Callback) {
+export function delayed<Callback extends AnyFunction>(ms: number, cb: Callback) {
   return (...args: Parameters<Callback>) => {
     return new Promise<ReturnType<Callback>>((resolve) => {
       const tid = setTimeout(() => {
@@ -36,10 +36,7 @@ export function delayed<Callback extends AnyFunc>(ms: number, cb: Callback) {
 }
 
 export function compose<A extends any[], R>(a: (...args: A) => R): (...args: A) => R
-export function compose<A extends any[], B, R>(
-  a: (...args: A) => B,
-  b: (b: B) => R,
-): (...args: A) => R
+export function compose<A extends any[], B, R>(a: (...args: A) => B, b: (b: B) => R): (...args: A) => R
 export function compose<A extends any[], B, C, R>(
   a: (...args: A) => B,
   b: (b: B) => C,
@@ -66,15 +63,13 @@ export function compose<A extends any[], B, C, D, E, F, R>(
   e: (e: E) => F,
   f: (f: F) => R,
 ): (...args: A) => R
-export function compose(...funcs: AnyFunc[]) {
+export function compose(...funcs: AnyFunction[]) {
   return funcs.reduceRight((a, b) => (...args: any[]) => a(b(...args)))
 }
 
 compose.async = composeAsync
 
-export function composeAsync<A extends any[], R>(
-  a: (...args: A) => R,
-): (...args: A) => Promise<Resolve<R>>
+export function composeAsync<A extends any[], R>(a: (...args: A) => R): (...args: A) => Promise<Resolve<R>>
 export function composeAsync<A extends any[], B, R>(
   a: (...args: A) => B,
   b: (b: Resolve<B>) => R,
@@ -105,6 +100,6 @@ export function composeAsync<A extends any[], B, C, D, E, F, R>(
   e: (e: Resolve<E>) => F,
   f: (f: Resolve<F>) => R,
 ): (...args: A) => Promise<Resolve<R>>
-export function composeAsync(...funcs: AnyFunc[]) {
+export function composeAsync(...funcs: AnyFunction[]) {
   return funcs.reduceRight((a, b) => async (...args: any[]) => a(await b(...args)))
 }
