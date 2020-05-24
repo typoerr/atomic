@@ -242,3 +242,9 @@ describe('isEmpty', () => {
     expect(_.isEmpty(new Date())).toBe(true)
   })
 })
+
+test('isConstOf', () => {
+  const isModel = _.conforms({ id: _.isConstOf('CONST') })
+  expect(isModel({ id: 'aaaa' })).toBe(false)
+  expect(isModel({ id: 'CONST' })).toBe(true)
+})

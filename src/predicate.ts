@@ -160,3 +160,7 @@ export function isEmpty(value: any) {
       return false
   }
 }
+
+export function isConstOf<T>(v: T) {
+  return (src: any): src is T => src === v
+}
