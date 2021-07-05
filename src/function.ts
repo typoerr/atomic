@@ -64,7 +64,11 @@ export function compose<A extends any[], B, C, D, E, F, R>(
   f: (f: F) => R,
 ): (...args: A) => R
 export function compose(...funcs: AnyFunction[]) {
-  return funcs.reduceRight((a, b) => (...args: any[]) => a(b(...args)))
+  return funcs.reduceRight(
+    (a, b) =>
+      (...args: any[]) =>
+        a(b(...args)),
+  )
 }
 
 compose.async = composeAsync
@@ -101,5 +105,9 @@ export function composeAsync<A extends any[], B, C, D, E, F, R>(
   f: (f: Resolve<F>) => R,
 ): (...args: A) => Promise<Resolve<R>>
 export function composeAsync(...funcs: AnyFunction[]) {
-  return funcs.reduceRight((a, b) => async (...args: any[]) => a(await b(...args)))
+  return funcs.reduceRight(
+    (a, b) =>
+      async (...args: any[]) =>
+        a(await b(...args)),
+  )
 }
