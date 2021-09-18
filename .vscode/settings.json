@@ -8,12 +8,6 @@
     "**/.cache/**": true,
     ".rts2*": true
   },
-  // prettier-vscode
-  // https://github.com/prettier/prettier-vscode
-  "prettier.eslintIntegration": false,
-  "prettier.tslintIntegration": false,
-  "prettier.stylelintIntegration": true,
-  "prettier.requireConfig": true,
   // disable editor format for prettier
   "typescript.format.enable": false,
   "javascript.format.enable": false
