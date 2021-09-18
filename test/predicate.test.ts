@@ -1,5 +1,5 @@
-import * as _ from '../src/predicate'
 import { noop } from '../src/misc'
+import * as _ from '../src/predicate'
 
 test('conforms', () => {
   interface Model {

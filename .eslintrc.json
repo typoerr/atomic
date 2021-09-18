@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "@typoerr/eslint-config",
-    "@typoerr/eslint-config/+typescript",
-    "@typoerr/eslint-config/+prettier"
-  ],
+  "extends": ["@typoerr/eslint-config", "@typoerr/eslint-config/+typescript", "@typoerr/eslint-config/+prettier"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },

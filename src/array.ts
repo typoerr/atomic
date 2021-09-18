@@ -1,6 +1,6 @@
-import { Falsy } from './types'
-import { has, idx } from './object'
 import { identity } from './misc'
+import { has, idx } from './object'
+import { Falsy } from './types'
 
 export function compact<T>(arr: (T | Falsy)[]): T[] {
   return arr.filter(Boolean as any)

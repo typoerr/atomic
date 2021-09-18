@@ -1,4 +1,4 @@
-import { compact, difference, intersection, unique, flat } from '../src/array'
+import { compact, difference, flat, intersection, unique } from '../src/array'
 
 test('compact', () => {
   const arr = [0, 1, 2, 0, NaN, undefined, null, -0]

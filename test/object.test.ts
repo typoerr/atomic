@@ -1,4 +1,4 @@
-import { idx, set, del, has, hasOwn, omit, pick, mapKeys, mapValues, dig } from '../src/object'
+import { del, dig, has, hasOwn, idx, mapKeys, mapValues, omit, pick, set } from '../src/object'
 
 test('idx', () => {
   const src = [{ id: 1 }, { id: 2 }]

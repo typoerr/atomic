@@ -1,4 +1,4 @@
-import { once, before, after, delayed, compose } from '../src/function'
+import { after, before, compose, delayed, once } from '../src/function'
 
 test('once', () => {
   const origin = (a: number, b: number) => a + b

@@ -3,9 +3,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "target": "ES2015",
-    "lib": [
-      "ES2019"
-    ],
+    "lib": ["ES2019"],
     "declaration": true,
     "outDir": "dist",
     "sourceMap": true,
@@ -19,14 +17,8 @@
     "forceConsistentCasingInFileNames": true,
     "skipDefaultLibCheck": true,
     "pretty": true,
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }

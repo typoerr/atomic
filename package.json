@@ -44,9 +44,11 @@
   "scripts": {
     "compile": "rollup -c",
     "clean": "rimraf dist",
-    "lint": "eslint src/**/*.ts test/**/*.ts",
+    "lint": "run-p -l -n lint:*",
+    "lint:eslint": "yarn run eslint src/**/*.ts test/**/*.ts",
+    "lint:prettier": "yarn run prettier --check .",
     "npm-publish": "yarn publish",
-    "release": "run-s lint test compile npm-publish clean git-push git-push-tag",
+    "release": "run-s lint:* test compile npm-publish clean git-push git-push-tag",
     "test": "jest",
     "git-push": "git push -u origin master",
     "git-push-tag": "git push --tag"

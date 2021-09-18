@@ -1,4 +1,4 @@
-import { identity, constant, existy, range, throws } from '../src/misc'
+import { constant, existy, identity, range, throws } from '../src/misc'
 
 test('identity', () => {
   expect(identity(1, 2, 3)).toBe(1)

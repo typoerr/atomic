@@ -1,4 +1,4 @@
-import { Predicate, AnyFunction } from './types'
+import { AnyFunction, Predicate } from './types'
 
 type PredicateMap<T> = {
   [K in keyof T]: Predicate<T[K]>

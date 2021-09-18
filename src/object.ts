@@ -1,4 +1,4 @@
-import { Assign, Primitive, DeepReadOnly, DeepUnPartial, AnyFunction } from './types'
+import { AnyFunction, Assign, DeepReadOnly, DeepUnPartial, Primitive } from './types'
 
 export function idx<T>(src: Iterable<T>, key?: (el: T, i: number) => string): Record<string, T>
 export function idx<T extends Record<string, any>, K extends keyof T>(src: Iterable<T>, key: K): Record<string, T>
