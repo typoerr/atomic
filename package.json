@@ -1,7 +1,7 @@
 {
   "name": "@typoerr/atomic",
   "description": "",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "author": "typoerr",
   "license": "MIT",
   "main": "dist/index.js",
