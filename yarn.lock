@@ -740,10 +740,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.0.0.tgz#067a6c49dc7a5c2412a505628e26902ae967bf6f"
   integrity sha512-TmCW5HoZ2o2/z2EYi109jLqIaPIi9y/lc2LmDCWzuCi35bcaQ+OtUh6nwBiFK7SOu25FAU5+YKdqFZUwtqGSdg==
 
-"@types/node@^16.9.2":
-  version "16.9.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.9.2.tgz#81f5a039d6ed1941f8cc57506c74e7c2b8fc64b9"
-  integrity sha512-ZHty/hKoOLZvSz6BtP1g7tc7nUeJhoCf3flLjh8ZEv1vFKBWHXcnMbJMyN/pftSljNyy0kNW/UqI3DccnBnZ8w==
+"@types/node@^16.9.3":
+  version "16.9.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.9.3.tgz#92230abb80a66beb10236e78a51cd9e6396f4489"
+  integrity sha512-5UmMznRvrwKqisJ458JbNoq3AyXHxlAKMkGtNe143W1SkZ1BVgvCHYBzn7wD66J+smE+BolqA1mes5BeXlWY6w==
 
 "@types/prettier@^2.1.5":
   version "2.3.1"
@@ -843,10 +843,10 @@
     "@typescript-eslint/types" "4.31.1"
     eslint-visitor-keys "^2.0.0"
 
-"@typoerr/eslint-config@0.0.44":
-  version "0.0.44"
-  resolved "https://registry.yarnpkg.com/@typoerr/eslint-config/-/eslint-config-0.0.44.tgz#8f972567ead0d5ed338721372ac378862c74347a"
-  integrity sha512-G8O0Reaj7mHarUa+Fqx8+RA4uTUl/yflpQVbrgDeLydWQFFOY5YfeMiq+qIWZqifAg/ckp3xYme9DLpKJDZrsg==
+"@typoerr/eslint-config@0.0.45":
+  version "0.0.45"
+  resolved "https://registry.yarnpkg.com/@typoerr/eslint-config/-/eslint-config-0.0.45.tgz#38bdea1032a3f26b2cdb5d90af428c28ae95112d"
+  integrity sha512-EiG4KRwnHrIdXP7cVoFL51NVXdk+8+bacaT8iSDiwHsdilsKqkWBXfPnRnvSEzPwEARlPtNaFEMSlfRP/n8FCw==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^4.31.1"
     "@typescript-eslint/parser" "^4.31.1"
