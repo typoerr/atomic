@@ -1,4 +1,5 @@
 {
+  "typescript.tsdk": "./node_modules/typescript/lib",
   // Disable editor formatter for ESLint and Prettier
   "typescript.format.enable": false,
   "javascript.format.enable": false
