@@ -14,11 +14,7 @@ export function idx(src: Iterable<any>, key: string | AnyFunction = (_: any, i: 
 /**
  * mutable set
  */
-export function set<T extends Record<string, any>, K extends keyof T>(
-  src: T,
-  key: K,
-  val: T[K],
-): Assign<T, Record<K, T[K]>>
+export function set<T extends Record<string, any>, K extends keyof T>(src: T, key: K, val: T[K]): Assign<T, Record<K, T[K]>>
 export function set<T extends Record<string, any>, K extends string, V>(src: T, key: K, val: V): Assign<T, Record<K, V>>
 export function set(src: any, key: string, val: any) {
   src[key] = val
@@ -65,10 +61,7 @@ export function pick<T extends Record<string, any>, K extends keyof T>(src: T, k
   return keys.reduce((acc, k) => set(acc, k, src[k]) as T, {} as T)
 }
 
-export function mapValues<T, K extends keyof T, U>(
-  src: T,
-  fn: (value: T[K], key: K, src: Readonly<T>) => U,
-): { [P in K]: U } {
+export function mapValues<T, K extends keyof T, U>(src: T, fn: (value: T[K], key: K, src: Readonly<T>) => U): { [P in K]: U } {
   const result: any = {}
   for (const key in src) {
     result[key] = fn(src[key] as any, key as any, src)
@@ -76,10 +69,7 @@ export function mapValues<T, K extends keyof T, U>(
   return result
 }
 
-export function mapKeys<T, K extends keyof T, U extends string>(
-  src: T,
-  fn: (value: T[K], key: K, src: Readonly<T>) => U,
-): { [P in U]: T[K] } {
+export function mapKeys<T, K extends keyof T, U extends string>(src: T, fn: (value: T[K], key: K, src: Readonly<T>) => U): { [P in U]: T[K] } {
   const result: any = {}
 
   for (const k in src) {
@@ -90,11 +80,7 @@ export function mapKeys<T, K extends keyof T, U extends string>(
   return result
 }
 
-type DigResult<T> = T extends Primitive
-  ? T | undefined
-  : T extends DeepUnPartial<infer R>
-  ? R | undefined
-  : T | undefined
+type DigResult<T> = T extends Primitive ? T | undefined : T extends DeepUnPartial<infer R> ? R | undefined : T | undefined
 
 export function dig<T, R>(src: T, draft: (src: DeepReadOnly<DeepUnPartial<T>>) => R): DigResult<R> {
   let result: any
