@@ -21,18 +21,13 @@ export function conforms<T>(map: PredicateMap<T>) {
 
 export function and<T1, T2>(a: Predicate<T1>, b: Predicate<T2>): Predicate<T1 & T2>
 export function and<T1, T2, T3>(a: Predicate<T1>, b: Predicate<T2>, c: Predicate<T3>): Predicate<T1 & T2 & T3>
-export function and<T1, T2, T3, T4>(
-  a: Predicate<T1>,
-  b: Predicate<T2>,
-  c: Predicate<T3>,
-  d: Predicate<T3>,
-): Predicate<T1 & T2 & T3 & T4>
-export function and<T>(...predicates: Predicate<any>[]): Predicate<T>
-export function and(...predicates: Predicate<any>[]) {
-  return function test(val: any) {
+export function and<T1, T2, T3, T4>(a: Predicate<T1>, b: Predicate<T2>, c: Predicate<T3>, d: Predicate<T3>): Predicate<T1 & T2 & T3 & T4>
+export function and<T>(...predicates: Predicate<unknown>[]): Predicate<T>
+export function and(...predicates: Predicate<unknown>[]) {
+  return function test(val: unknown) {
     try {
       for (let i = 0; i < predicates.length; i++) {
-        if (!predicates[i](val)) return false
+        if (!predicates[i]!(val)) return false
       }
       return true
     } catch {
@@ -43,18 +38,13 @@ export function and(...predicates: Predicate<any>[]) {
 
 export function or<T1, T2>(a: Predicate<T1>, b: Predicate<T2>): Predicate<T1 | T2>
 export function or<T1, T2, T3>(a: Predicate<T1>, b: Predicate<T2>, c: Predicate<T3>): Predicate<T1 | T2 | T3>
-export function or<T1, T2, T3, T4>(
-  a: Predicate<T1>,
-  b: Predicate<T2>,
-  c: Predicate<T3>,
-  d: Predicate<T4>,
-): Predicate<T1 | T2 | T3 | T4>
+export function or<T1, T2, T3, T4>(a: Predicate<T1>, b: Predicate<T2>, c: Predicate<T3>, d: Predicate<T4>): Predicate<T1 | T2 | T3 | T4>
 export function or<T>(...predicates: Predicate<any>[]): Predicate<T>
 export function or(...predicates: Predicate<any>[]) {
   return function test(val: any) {
     try {
       for (let i = 0; i < predicates.length; i++) {
-        if (predicates[i](val)) return true
+        if (predicates[i]!(val)) return true
       }
       return false
     } catch {
